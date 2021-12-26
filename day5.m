@@ -1,24 +1,18 @@
 fid = fopen("day5.dat");
 line = fgetl(fid);
-dat = {};
+dat = [];
 while (line >= 0)
 	line = strrep(line," -> ",",");
-	dat = [dat;str2num(line)];
+	dat = [dat;(str2num(line)+1)];
 	line = fgetl(fid);
 end
 fclose(fid);
 
-dat = cell2mat(dat) + 1;
-GRID = 1000;
-
-function res = find_intersect(dat,GRID,no_diag)
-	gryd = zeros(GRID);
+function res = find_intersect(dat,gryd,no_diag)
 	for i = 1:(size(dat)(1))
 		line = dat(i,:);
-		row = (abs(line(1)-line(3))+1);
-		row = linspace(line(1),line(3),row);
-		col = (abs(line(2)-line(4))+1);
-		col = linspace(line(2),line(4),col);
+		row = linspace(line(1),line(3),(abs(line(1)-line(3))+1));
+		col = linspace(line(2),line(4),(abs(line(2)-line(4))+1));
 		if ((line(1)~=line(3)) && (line(2)~=line(4)) && no_diag)
 			continue;
 		elseif ((line(1)~=line(3)) && (line(2)~=line(4)))
@@ -33,10 +27,11 @@ function res = find_intersect(dat,GRID,no_diag)
 end
 
 % part 1
-res1 = find_intersect(dat,GRID,true);
+GRYD = 1000;
+res1 = find_intersect(dat,zeros(GRYD),true);
 
 % part 2
-res2 = find_intersect(dat,GRID,false);
+res2 = find_intersect(dat,zeros(GRYD),false);
 
 %test
 assert(res1==6564);
