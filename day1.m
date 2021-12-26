@@ -17,7 +17,7 @@ end
 % part 1
 res1 = count_increases(dat);
 
-% part2
+% part 2
 WINDOW = 3;
 LEN = length(dat);
 dat = movmean(dat,WINDOW);
