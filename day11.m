@@ -2,7 +2,7 @@ fid = fopen("day11.dat");dat = textscan(fid,"%s"){1};fclose(fid);
 dat = cellfun("num2cell",dat,"UniformOutput",false);
 dat = cellfun("str2num",cell2mat(dat));
 
-% part 1
+% parts 1 & 2
 HEIGHT = (size(dat)(1));
 WIDTH = (size(dat)(2));
 steps = 0;
@@ -34,8 +34,6 @@ while (true)
 	end
 	dat(dat<0) = 0;
 end
-
-% part 2
 
 % test
 assert(res1==1642);
