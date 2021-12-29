@@ -3,10 +3,12 @@ dat = cellfun("num2cell",dat,"UniformOutput",false);
 dat = cellfun("str2num",cell2mat(dat));
 
 % part 1
-HEIGHT = (size(dat)(2));
-steps = 100;
-res1 = 0;
-while (steps > 0)
+HEIGHT = (size(dat)(1));
+WIDTH = (size(dat)(2));
+steps = 0;
+res1 = res2 = 0;
+while (true)
+	steps += 1;
 	dat += 1;
 	[row,col] = find(dat>=10);
 	while (length(row)>0)
@@ -22,12 +24,19 @@ while (steps > 0)
 		end
 		[row,col] = find(dat>=10);
 	end
-	res1 += length(find(dat<0));
+	res_prelim = length(find(dat<0));
+	if (steps <= 100)
+		res1 += res_prelim;
+	end
+	if (res_prelim >= (HEIGHT*WIDTH))
+		res2 += steps;
+		break;
+	end
 	dat(dat<0) = 0;
-	steps -= 1;
 end
+
 % part 2
 
 % test
 assert(res1==1642);
-assert(0==0);
+assert(res2==320);
