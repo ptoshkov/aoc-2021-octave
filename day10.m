@@ -49,5 +49,5 @@ end
 res2 = (sort(res2)(ceil(length(res2)/2)));
 
 % test
-assert(387363==387363);
-assert(res2==0);
+assert(res1==387363);
+assert(res2==4330777059);
