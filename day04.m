@@ -1,4 +1,4 @@
-fid = fopen("day4.dat");
+fid = fopen("day04.dat");
 line = fgets(fid);
 dat = {};
 while (line >= 0)

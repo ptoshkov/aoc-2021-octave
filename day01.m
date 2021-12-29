@@ -1,4 +1,4 @@
-dat = importdata("day1.dat");
+dat = importdata("day01.dat");
 
 function res = count_increases(dat)
 	% example
@@ -21,7 +21,7 @@ res1 = count_increases(dat);
 WINDOW = 3;
 LEN = length(dat);
 dat = movmean(dat,WINDOW);
-dat = dat_movmean((WINDOW-1):(LEN-1));
+dat = dat((WINDOW-1):(LEN-1));
 res2 = count_increases(dat);
 
 % test

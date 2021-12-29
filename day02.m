@@ -8,7 +8,7 @@
 % or the position/aim
 %     position/aim = horizontal + aim
 
-dat = importdata("day2.dat");
+dat = importdata("day02.dat");
 dat = strrep(dat,"forward ","");
 dat = strrep(dat,"up ","i*");
 dat = strrep(dat,"down ","-i*");

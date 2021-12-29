@@ -1,4 +1,4 @@
-dat = importdata("day6.dat");
+dat = importdata("day06.dat");
 
 function res = compute_population(dat,days)
 	INIT = 8;

@@ -1,4 +1,4 @@
-dat = importdata("day8.dat");
+dat = importdata("day08.dat");
 SEGS = containers.Map(
 	[1,4,7,8,0,2,3,5,6,9],
 	[2,4,3,7,6,5,5,5,6,6]);

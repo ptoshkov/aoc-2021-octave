@@ -1,4 +1,4 @@
-dat = importdata("day7.dat");
+dat = importdata("day07.dat");
 dat += 1;
 
 function res = compute_cost(dat,linear)

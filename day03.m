@@ -1,4 +1,4 @@
-dat = importdata("day3.dat");
+dat = importdata("day03.dat");
 dat = num2str(dat);
 dat = bin2dec(dat);
 BITLEN = 12;

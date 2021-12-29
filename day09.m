@@ -1,4 +1,4 @@
-fid = fopen("day9.dat");dat = textscan(fid,"%s"){1};fclose(fid);
+fid = fopen("day09.dat");dat = textscan(fid,"%s"){1};fclose(fid);
 dat = cellfun("num2cell",dat,"UniformOutput",false);
 dat = cellfun("str2num",cell2mat(dat));
 
