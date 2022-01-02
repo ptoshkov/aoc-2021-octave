@@ -1,20 +1,25 @@
 dat = importdata("day14.dat");
 
 function [res,dat] = solve(dat,steps)
+	% >>> OPTIMIZATION >>>
+	lut = containers.Map;
+	for i = 2:length(dat)
+		lut(strsplit(dat{i}," -> "){1}) = strsplit(dat{i}," -> "){2};
+	end
+	% <<< OPTIMIZATION <<<
 	while (steps > 0)
-		new = last = "";
+		pairs = {};
 		for i = 1:(length(dat{1})-1)
-			pair = (dat{1}(i:(i+1)));
-			new = [new,pair(1)];
-			for j = 2:length(dat)
-				if strcmp(pair,strsplit(dat{j}," -> "){1})
-					new = [new,strsplit(dat{j}," -> "){2}];
-					break;
-				end
-			end
-			last = pair(2);
+			pairs = [pairs,(dat{1}(i:(i+1)))];
 		end
-		dat{1} = [new,last];
+		for i = 1:length(pairs)
+			if isKey(lut,pairs{i})
+				pairs{i}(2) = lut(pairs{i});
+			else
+				pairs{i} = pairs{i}(1);
+			end
+		end
+		dat{1} = cell2mat([pairs,dat{1}(length(dat{1}))]);
 		steps -= 1;
 	end
 	res = [];
