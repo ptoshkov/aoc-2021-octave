@@ -1,6 +1,6 @@
 dat = importdata("day13.dat");txt = dat.textdata;dat = dat.data(1:length(dat.data)-length(txt),:)+1;
 
-% parts 1 & 2
+% part 1
 HEIGHT = (max(dat)(1));
 WIDTH = (max(dat)(2));
 grid = zeros(HEIGHT,WIDTH);
