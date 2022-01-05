@@ -2,7 +2,7 @@ fid = fopen("day15.dat");dat = textscan(fid,"%s"){1};fclose(fid);
 dat = cellfun("num2cell",dat,"UniformOutput",false);
 dat = cellfun("str2num",cell2mat(dat));
 
-function res = compute_cost(dat)
+function res = dijkstra(dat)
 	HEIGHT = length(dat);
 	loc = 1;
 	visited = zeros(HEIGHT,HEIGHT);
@@ -41,7 +41,7 @@ function res = compute_cost(dat)
 	res = cost(end);
 end
 % part 1
-res1 = compute_cost(dat);
+res1 = dijkstra(dat);
 
 % part 2
 dat1 = (dat+1);dat1(dat1>9)=1;
@@ -54,8 +54,8 @@ dat2 = (dat1+1);dat2(dat2>9)=1;
 dat3 = (dat2+1);dat3(dat3>9)=1;
 dat4 = (dat3+1);dat4(dat4>9)=1;
 dat = [dat;dat1;dat2;dat3;dat4];
-res2 = compute_cost(dat);
+res2 = dijkstra(dat);
 
 % test
 assert(res1==562);
-assert(0==0);
+assert(res2==2874);
