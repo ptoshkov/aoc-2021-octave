@@ -10,6 +10,7 @@ function [ver,typ,len,num,dat] = parse_op(dat)
 		disp("ERROR: THIS PACKET IS NOT AN OPERATOR!!!")
 		len = (-1);
 		num = (-1);
+		return
 	end
 	if bin2dec(dat(7))
 		len = (-1);
@@ -17,11 +18,11 @@ function [ver,typ,len,num,dat] = parse_op(dat)
 		dat = dat((8+TYP1):length(dat));
 	else
 		num = (-1);
-		disp(dat(8:(8+TYP0)))
 		len = bin2dec(dat(8:(7+TYP0)));
 		dat = dat((8+TYP0):length(dat));
 	end
 end
+
 function [ver,typ,val,dat] = parse_lit(dat)
 	LIT = 4;
 	ver = bin2dec(dat(1:3));
@@ -29,6 +30,7 @@ function [ver,typ,val,dat] = parse_lit(dat)
 	if (~(typ==LIT))
 		disp("ERROR: THIS PACKET IS NOT A LITERAL!!!")
 		val = (-1);
+		return
 	end
 	i = 0;
 	val = "";
@@ -43,14 +45,22 @@ function [ver,typ,val,dat] = parse_lit(dat)
 end
 
 % part 1
-LEN = (4*length(dat));
-dat = dec2bin(hex2dec(dat));
-dat = [strrep(num2str(zeros(1,(LEN-length(dat))))," ",""),dat];
-[ver,typ,len,num,dat] = parse_op(dat);
-[ver,typ,val,dat] = parse_lit(dat);
-[ver,typ,val,dat] = parse_lit(dat);
-[ver,typ,val,dat] = parse_lit("110100101111111000101000");
-while bin2dec(dat)
+new = "";
+for i = 1:length(dat)
+	new = [new,dec2bin(hex2dec(dat(i)),4)];
+end
+dat = new;
+contents = {};
+vers = 0;
+while (bin2dec(dat)~=0)
+	[ver,typ,len,num,dat_pre] = parse_op(dat);
+	contents(end+1) = "op";
+	if ((len<0)&&(num<0))
+		[ver,typ,val,dat_pre] = parse_lit(dat);
+		contents(end) = "lit";
+	end
+	vers += ver;
+	dat = dat_pre;
 end
 
 % part 2
