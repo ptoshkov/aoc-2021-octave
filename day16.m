@@ -66,7 +66,7 @@ end
 % part 2
 
 % test
-assert(0==0);
+assert(949==949);
 assert(0==0);
 
 
