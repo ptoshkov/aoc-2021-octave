@@ -68,31 +68,63 @@ contents = {};
 res1 = 0;
 while (bin2dec(dat)~=0)
 	[ver,typ,len,num,dat_pre] = parse_op(dat);
-	contents(end+1) = ops(typ);
+	contents(end+1) = [length(dat)-length(dat_pre),typ,len,num];
 	if ((len<0)&&(num<0))
 		[ver,typ,val,dat_pre] = parse_lit(dat);
-		contents(end) = [num2str(val),","];
-	elseif (length(contents)>1)
-		if (~(isempty(str2num(contents{end-1}))))
-			contents(end-1) = (contents{end-1}(1:(length(contents{end-1})-1)));
-			contents(end) = ["),",contents{end}];
-		end
+		contents(end) = [length(dat)-length(dat_pre),val];
 	end
 	res1 += ver;
 	dat = dat_pre;
 end
-contents(end) = (contents{end}(1:(length(contents{end})-1)));
-contents = cell2mat(contents);
-closing = length(strfind(contents,"("))-length(strfind(contents,")"));
-contents = [contents,char(")"*ones(1,closing))];
-disp(contents)
-eval(contents)
 
 % part 2
+while (length(contents)>1)
+	for i = 1:length(contents)
+		if (length(contents{i})<3)
+			continue
+		end
+		simple = true;
+		syze = contents{i}(1);
+		expr = ops(contents{i}(2));
+		if (contents{i}(3)>0)
+			j = 0;
+			k = 0;
+			while (k<contents{i}(3))
+				j += 1;
+				k += contents{i+j}(1);
+				if (length(contents{i+j})>3)
+					simple = false;
+					break;
+				end
+				syze += contents{i+j}(1);
+				expr = [expr,num2str(contents{i+j}(2)),","];
+			end
+		else
+			for j = 1:contents{i}(4)
+				if (length(contents{i+j})>3)
+					simple = false;
+					break;
+				end
+				syze += contents{i+j}(1);
+				expr = [expr,num2str(contents{i+j}(2)),","];
+			end
+		end
+		if (simple)
+			expr = expr(1:(length(expr)-1));
+			expr = [expr,")"];
+			expr = eval(expr);
+			contents(i) = [contents{i}(1),expr];
+			contents{i}(1) = syze;
+			contents((i+1):(i+j)) = 0;
+		end
+	end
+	contents = contents(~(cellfun("isempty",cellfun("nonzeros",contents,"UniformOutput",false))));
+end
+res2 = contents{1}(2);
 
 % test
-assert(949==949);
-assert(0==0);
+assert(res1==949);
+assert(res2==1114600142730);
 
 
 
