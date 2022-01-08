@@ -23,6 +23,10 @@ function [histogram,y_d_max] = finder(dat,x_v_guess,y_v_guess,unconstrained)
 			x_v -= 1;
 			x_v = max(0,x_v);
 			y_v -= 1;
+			if ((x_d>=dat(1,1))&&(x_d<=dat(1,2))&&(y_d>=dat(2,1))&&(y_d<=dat(2,2)))
+				histogram = [histogram;x_v_guess,y_v_guess-1];
+				y_d_max = max(y_d_max,y_d_max_pre);
+			end
 		end
 		if ((x_d<=dat(1,2))&&(~(x_overshoot))&&(unconstrained))
 			x_v_guess += 1;
@@ -34,11 +38,7 @@ function [histogram,y_d_max] = finder(dat,x_v_guess,y_v_guess,unconstrained)
 		if (x_d>=dat(1,1))||(~(unconstrained))
 			y_v_guess += 1;
 		end
-		if ((x_d>=dat(1,1))&&(x_d<=dat(1,2))&&(y_d>=dat(2,1))&&(y_d<=dat(2,2)))
-			histogram = [histogram;x_v_guess,y_v_guess-1];
-			y_d_max = max(y_d_max,y_d_max_pre);
-		end
-		if ((y_v_guess)>abs(4*dat(2,1)))
+		if ((y_v_guess)>abs(dat(2,1)))
 			break;
 		end
 	end
@@ -46,15 +46,15 @@ end
 
 % part 1
 [_,res1] = finder(dat,0,0,true);
-histogram = [];
-for i = 1:(dat(1,1))
-	[temp,_] = finder(dat,i,0,false);
-	histogram = [histogram;temp];
-end
 
 % part 2
-res2 = 0;
+res2 = [];
+for i = 1:((dat(1,2))+1)
+	[temp,_] = finder(dat,i,dat(2,1),false);
+	res2 = [res2;temp];
+end
+res2 = (size(unique(res2,"rows"))(1));
 
 % test
-assert(25200==25200);
-assert(res2==0);
+assert(res1==25200);
+assert(res2==3012);
