@@ -60,7 +60,7 @@ function lyne = explode(lyne,nums,chars)
 						right = str2pto(lyne(i-2),nums,chars);
 						result = left+right;
 						if (result>66)
-							disp("OUT OF RANGE!!!")
+							disp("OUT OF RANGE!!! RESULT CORRUPTED!!!")
 						end
 						lyne(i-j) = dec2pto(num2str(result),nums,chars);
 						break;
@@ -77,7 +77,7 @@ function lyne = explode(lyne,nums,chars)
 						right = str2pto(lyne(i),nums,chars);
 						result = left+right;
 						if (result>66)
-							disp("OUT OF RANGE!!!")
+							disp("OUT OF RANGE!!! RESULT CORRUPTED!!!")
 						end
 						lyne(j) = dec2pto(num2str(result),nums,chars);
 						break;
@@ -135,17 +135,35 @@ function output = compute_mag(input)
 end
 
 % part 1
+res1 = dat{1};
 for i = 2:length(dat)
+	fprintf("Line %d\n",i);
 	tic
-	dat(1) = cleanup_line(["[",dat{1},",",dat{i},"]"],nums,chars);
-	disp(i);
-	disp(dat{1});
+	res1 = cleanup_line(["[",res1,",",dat{i},"]"],nums,chars);
 	toc
 end
-res1 = compute_mag(dat{1});
+res1 = compute_mag(res1);
+fprintf("Magnitude: %d\n",res1);
 
 % part 2
 res2 = 0;
+for i = 1:length(dat)
+	fprintf("Line %d\n",i);
+	fprintf("Result so far: %d\n",res2);
+	tic
+	for j = 1:length(dat)
+		fprintf("#");
+		if (i==j)
+			continue;
+		end
+		temp = cleanup_line(["[",dat{i},",",dat{j},"]"],nums,chars);
+		temp = compute_mag(temp);
+		res2 = max(res2,temp);
+	end
+	fprintf("\n");
+	toc
+end
+fprintf("Final result: %d\n",res2);
 
 % test
 %assert(explode("[[[[[9,8],1],2],3],4]",nums,chars),"[[[[0,9],2],3],4]");
@@ -167,8 +185,8 @@ res2 = 0;
 %assert(compute_mag("[[1,2],[[3,4],5]]"),143);
 %assert(compute_mag("[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]"),3488);
 %assert(str2pto("*",nums,chars),9);
-assert(3216==3216);
-assert(res2==0);
+assert(res1==3216);
+assert(res2==4643);
 
 
 
