@@ -16,9 +16,14 @@ chars(chars==91) = 111;
 chars(chars==93) = 112;
 chars = char(chars);
 
-function input = pto2dec(input,nums,chars)
-	for i = 1:length(chars)
-		input = strrep(input,chars(i),num2str(nums(i)));
+function output = pto2dec(input,nums,chars)
+	output = "";
+	for i = 1:length(input)
+		if (strcmp(input(i),"[")||strcmp(input(i),"]")||strcmp(input(i),",")||strcmp(input(i),"0"))
+			output = [output,input(i)];
+		else
+			output = [output,num2str(nums(chars==input(i)))];
+		end
 	end
 end
 
