@@ -28,8 +28,10 @@ function output = pto2dec(input,nums,chars)
 end
 
 function input = dec2pto(input,nums,chars)
-	for i = flip(1:length(nums))
-		input = strrep(input,num2str(nums(i)),chars(i));
+	numbers = eval(input);
+	numbers = flip(sort(numbers));
+	for i = 1:length(numbers)
+		input = strrep(input,num2str(numbers(i)),chars(nums==numbers(i)));
 	end
 end
 
@@ -57,6 +59,9 @@ function lyne = explode(lyne,nums,chars)
 						left = str2pto(lyne(i-j),nums,chars);
 						right = str2pto(lyne(i-2),nums,chars);
 						result = left+right;
+						if (result>66)
+							disp("OUT OF RANGE!!!")
+						end
 						lyne(i-j) = dec2pto(num2str(result),nums,chars);
 						break;
 					end
@@ -71,6 +76,9 @@ function lyne = explode(lyne,nums,chars)
 						left = str2pto(lyne(j),nums,chars);
 						right = str2pto(lyne(i),nums,chars);
 						result = left+right;
+						if (result>66)
+							disp("OUT OF RANGE!!!")
+						end
 						lyne(j) = dec2pto(num2str(result),nums,chars);
 						break;
 					end
@@ -159,7 +167,7 @@ res2 = 0;
 %assert(compute_mag("[[1,2],[[3,4],5]]"),143);
 %assert(compute_mag("[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]"),3488);
 %assert(str2pto("*",nums,chars),9);
-assert(res1==0);
+assert(3216==3216);
 assert(res2==0);
 
 
