@@ -72,6 +72,7 @@ dat_aligned(:,:,2) = dat(:,:,1);
 dat_flat = dat(:,:,1);
 dat_flat = dat_flat(all(transpose(dat_flat~=INVALID)),:);
 found = [1];
+diffs = [0,0,0];
 while (size(dat_aligned)(3)<=size(dat)(3))
 	for i = 2:(size(dat)(3))
 		cand = dat(:,:,i);
@@ -83,7 +84,7 @@ while (size(dat_aligned)(3)<=size(dat)(3))
 			mags_ref = compute_mags(cand_ref);
 			common = mags(ismember(mags(:,end),mags_ref(:,end)),:);
 			common_ref = mags_ref(ismember(mags_ref(:,end),mags(:,end)),:);
-			if ((size(common)(1))==66)
+			if ((size(common)(1))>=66)
 				vert = common(1,:);
 				vert_ref = mags_ref(mags_ref(:,end)==vert(end),:);
 				x1 = vert(1:3);
@@ -108,7 +109,7 @@ while (size(dat_aligned)(3)<=size(dat)(3))
 						disp("HI")
 						%disp(diff1)
 						%disp(i)
-						%disp(found)
+						disp(found)
 						disp(size(dat_aligned)(3))
 						%disp(j)
 						%disp(axes(k,:))
@@ -124,6 +125,7 @@ while (size(dat_aligned)(3)<=size(dat)(3))
 							pad = inf*ones((MAXROWS-(size(new_dat)(1))),MAXCOLS);
 							new_dat = [new_dat;pad];
 							dat_aligned(:,:,(end+1)) = new_dat;
+							diffs = [diffs;diff1];
 						end
 						break;
 					end
@@ -133,14 +135,24 @@ while (size(dat_aligned)(3)<=size(dat)(3))
 		end
 	end
 end
-res1 = size(unique(dat_flat,"rows"))(1);
+dat_flat = unique(dat_flat,"rows");
+res1 = size(dat_flat)(1);
 
 % part 2
 res2 = 0;
+for i = 1:(size(diffs)(1))
+	diff1 = diffs(i,:);
+	for j = 1:(size(diffs)(1))
+		diff2 = diffs(j,:);
+		res2_tmp = sum(abs(diff1-diff2));
+		disp(res2_tmp)
+		res2 = max(res2,res2_tmp);
+	end
+end
 
 % test
 assert(res1==467);
-assert(0==0);
+assert(res2==12226);
 
 
 
