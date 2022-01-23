@@ -17,6 +17,8 @@ function output = pad_matrix(input,padding)
 end
 
 % parts 1 & 2
+% This solution is based on:
+% https://www.reddit.com/r/adventofcode/comments/rkf5ek/comment/hqcwiet/?utm_source=share&utm_medium=web2x&context=3
 res1 = 0;
 for i = 1:50
 	padding = (keys(1)*(~(keys(end)))*(rem(i,2)==0));

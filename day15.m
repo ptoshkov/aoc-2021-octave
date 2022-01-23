@@ -3,6 +3,8 @@ dat = cellfun("num2cell",dat,"UniformOutput",false);
 dat = cellfun("str2num",cell2mat(dat));
 
 function res = dijkstra(dat)
+	% This implementation is based on:
+	% https://levelup.gitconnected.com/dijkstras-shortest-path-algorithm-in-a-grid-eb505eb3a290
 	HEIGHT = length(dat);
 	loc = 1;
 	visited = zeros(HEIGHT,HEIGHT);
