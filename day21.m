@@ -18,54 +18,31 @@ while all(scores<1000)
 end
 res1 = rolls*min(scores);
 
-% part 2
-pos = str2num([dat{1}(end),",",dat{2}(end)]);
-scores = zeros(1,2);
-universes = 0;
-player = 1;
-possibilities = [3,1;4,3;5,6;6,7;7,6;8,3;9,1];
-wins1 = 0;
-wins2 = 0;
-while (size(scores)>0)
-	% pause(1)
-	% disp("hi")
-	% disp("positions")
-	% disp(pos)
-	% disp("scores")
-	% disp(scores)
-	% disp("universes")
-	% disp(universes)
-	pos_new = [];
-	scores_new = [];
-	universes_new = [];
-	for i = 1:(size(scores)(1))
-		disp(size(scores)(1))
-		disp(i)
-		for j = 1:(size(possibilities)(1))
-			result = possibilities(j,1);
-			pos_tmp = pos(i,player) + result;
-			pos_tmp = rem(pos_tmp,10)+10*(rem(pos_tmp,10)==0);
-			if ((scores(i,player)+pos_tmp)>=21)
-				if (player==1)
-					wins1 += universes(i);
-				else
-					wins2 += universes(i);
-				end
-			else
-				pos_new = [pos_new;pos(i,:)];
-				pos_new(end,player) = pos_tmp;
-				scores_new = [scores_new;scores(i,:)];
-				scores_new(end,player) += pos_tmp;
-				universes_new = [universes_new,universes(i)+possibilities(j,2)];
-			end
-		end
-		player = ((~(player-1))+1);
-	end
-	pos = pos_new;
-	scores = scores_new;
-	universes = universes_new;
+% part 2 - I COPIED THIS SOLUTION FROM
+% https://www.reddit.com/r/adventofcode/comments/rl6p8y/comment/hpkxh2c/?utm_source=share&utm_medium=web2x&context=3
+function [w1,w2] = wins(p1,t1,p2,t2)
+    rf = [3,1; 4,3; 5,6; 6,7; 7,6; 8,3; 9,1];
+    if t2 <= 0
+        w1 = 0;
+        w2 = 1;
+        return
+    end
+    w1 = w2 = 0;
+    for i = 1:(size(rf)(1))
+        r = rf(i,1);
+        f = rf(i,2);
+        [c2,c1] = wins(p2,t2,rem(p1+r,10),t1-1-rem(p1+r,10));
+        w1 += f*c1;
+        w2 += f*c2;
+    end
 end
+LIMIT = 21;
+pos = str2num([dat{1}(end),",",dat{2}(end)]);
+tic
+res2 = max(wins(pos(1)-1,LIMIT,pos(2)-1,LIMIT));
+toc
+
 
 % test
 assert(res1==897798);
-assert(0==0);
+assert(res2==48868319769358);
