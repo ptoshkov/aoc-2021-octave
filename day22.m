@@ -93,4 +93,4 @@ end
 
 % test
 assert(res1==533863);
-assert(res2==0);
+assert(res2==1261885414840992);
