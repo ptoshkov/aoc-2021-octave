@@ -32,7 +32,7 @@ function z = fmonad(monad, z)
     w = monad(1);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     x+=12;
     x = (x == w);
     x = (x == 0);
@@ -50,7 +50,7 @@ function z = fmonad(monad, z)
     w = monad(2);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     x+=10;
     x = (x == w);
     x = (x == 0);
@@ -68,7 +68,7 @@ function z = fmonad(monad, z)
     w = monad(3);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     x+=13;
     x = (x == w);
     x = (x == 0);
@@ -86,7 +86,7 @@ function z = fmonad(monad, z)
     w = monad(4);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     z = floor(z/26);
     x+=-11;
     x = (x == w);
@@ -105,7 +105,7 @@ function z = fmonad(monad, z)
     w = monad(5);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     x+=13;
     x = (x == w);
     x = (x == 0);
@@ -123,7 +123,7 @@ function z = fmonad(monad, z)
     w = monad(6);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     z = floor(z/26);
     x+=-1;
     x = (x == w);
@@ -142,7 +142,7 @@ function z = fmonad(monad, z)
     w = monad(7);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     x+=10;
     x = (x == w);
     x = (x == 0);
@@ -160,7 +160,7 @@ function z = fmonad(monad, z)
     w = monad(8);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     x+=11;
     x = (x == w);
     x = (x == 0);
@@ -178,7 +178,7 @@ function z = fmonad(monad, z)
     w = monad(9);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     z = floor(z/26);
     x+=0;
     x = (x == w);
@@ -197,7 +197,7 @@ function z = fmonad(monad, z)
     w = monad(10);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     x+=10;
     x = (x == w);
     x = (x == 0);
@@ -215,7 +215,7 @@ function z = fmonad(monad, z)
     w = monad(11);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     z = floor(z/26);
     x+=-5;
     x = (x == w);
@@ -234,7 +234,7 @@ function z = fmonad(monad, z)
     w = monad(12);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     z = floor(z/26);
     x+=-16;
     x = (x == w);
@@ -253,7 +253,7 @@ function z = fmonad(monad, z)
     w = monad(13);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     z = floor(z/26);
     x+=-7;
     x = (x == w);
@@ -268,11 +268,11 @@ function z = fmonad(monad, z)
     y+=11;
     y*=x;
     z+=y;
-    
+
     w = monad(14);
     x*=0;
     x+=z;
-    assert(x >= 0); x = rem(x, 26);
+    x = rem(x, 26);
     z = floor(z/26);
     x+=-11;
     x = (x == w);
