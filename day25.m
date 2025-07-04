@@ -78,4 +78,6 @@ while(true)
     i++;
 end
 
+assert(i == 509);
+
 
