@@ -30,308 +30,84 @@ function z = fmonad(monad, z)
     y = 0;
 
     w = monad(1);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    x+=12;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=6;
-    y*=x;
-    z+=y;
+    z = 26*z + w + 6;
+    disp(z);
 
     w = monad(2);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    x+=10;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=6;
-    y*=x;
-    z+=y;
+    z = 26*z + w + 6;
+    disp(z);
 
     w = monad(3);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    x+=13;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=3;
-    y*=x;
-    z+=y;
+    z = 26*z + w + 3;
+    disp(z);
 
+    disp("four")
+    disp(rem(z, 26) - 11);
     w = monad(4);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    z = floor(z/26);
-    x+=-11;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=11;
-    y*=x;
-    z+=y;
+    x = ((rem(z, 26) - 11) ~= w);
+    z = (w + 11)*x + (25*x + 1)*floor(z/26);
+    disp(z);
 
     w = monad(5);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    x+=13;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=9;
-    y*=x;
-    z+=y;
+    z = 26*z + w + 9;
+    disp(z);
 
+    disp("six")
+    disp(rem(z, 26) - 1);
     w = monad(6);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    z = floor(z/26);
-    x+=-1;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=3;
-    y*=x;
-    z+=y;
+    x = ((rem(z, 26) - 1) ~= w);
+    z = (w + 3)*x + (25*x + 1)*floor(z/26);
+    disp(z);
 
     w = monad(7);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    x+=10;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=13;
-    y*=x;
-    z+=y;
+    z = 26*z + w + 13;
+    disp(z);
 
     w = monad(8);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    x+=11;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=6;
-    y*=x;
-    z+=y;
+    z = 26*z + w + 6;
+    disp(z);
 
+    disp("nine")
+    disp(rem(z, 26));
     w = monad(9);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    z = floor(z/26);
-    x+=0;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=14;
-    y*=x;
-    z+=y;
+    x = (rem(z, 26) ~= w);
+    z = (w + 14)*x + (25*x + 1)*floor(z/26);
+    disp(z);
 
     w = monad(10);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    x+=10;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=10;
-    y*=x;
-    z+=y;
+    z = 26*z + w + 10;
+    disp(z);
 
+    disp("eleven")
+    disp(rem(z, 26) - 5);
     w = monad(11);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    z = floor(z/26);
-    x+=-5;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=12;
-    y*=x;
-    z+=y;
+    x = ((rem(z, 26) - 5) ~= w);
+    z = (w + 12)*x + (25*x + 1)*floor(z/26);
+    disp(z);
 
+    disp("twelve")
+    disp((rem(z, 26) - 16));
     w = monad(12);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    z = floor(z/26);
-    x+=-16;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=10;
-    y*=x;
-    z+=y;
+    x = ((rem(z, 26) - 16) ~= w);
+    z = (w + 10)*x + (25*x + 1)*floor(z/26);
+    disp(z);
 
+    disp("thirteen")
+    disp((rem(z, 26) - 7));
     w = monad(13);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    z = floor(z/26);
-    x+=-7;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=11;
-    y*=x;
-    z+=y;
+    x = ((rem(z, 26) - 7) ~= w);
+    z = (w + 11)*x + (25*x + 1)*floor(z/26);
+    disp(z);
 
+    disp("fourteen")
+    disp((rem(z, 26) - 11));
     w = monad(14);
-    x*=0;
-    x+=z;
-    x = rem(x, 26);
-    z = floor(z/26);
-    x+=-11;
-    x = (x == w);
-    x = (x == 0);
-    y*=0;
-    y+=25;
-    y*=x;
-    y+=1;
-    z*=y;
-    y*=0;
-    y+=w;
-    y+=15;
-    y*=x;
-    z+=y;
+    x = ((rem(z, 26) - 11) ~= w);
+    z = (w + 15)*x + (25*x + 1)*floor(z/26);
+    disp(z);
 end
 
-while(true)
-    print_monad(monad);
-    found = false;
-    monad_mat = sprintf('%d', monad) - '0';
-
-    if(~(any(monad_mat == 0)))
-        for z = 0:25
-            if(fmonad(monad_mat, z) == 0)
-                disp("FOUND");
-                disp(monad);
-                found = true;
-            end
-        end
-    end
-
-    if(found)
-        break;
-    end
-
-    monad--;
-end
-
-% monad = 11111111111111;
-% 
-% while(true)
-%     print_monad(monad);
-%     found = false;
-%     monad_mat = sprintf('%d', monad) - '0';
-% 
-%     if(~(any(monad_mat == 0)))
-%         for z = 0:25
-%             if(fmonad(monad_mat, z) == 0)
-%                 disp("FOUND");
-%                 disp(monad);
-%                 found = true;
-%             end
-%         end
-%     end
-% 
-%     if(found)
-%         break;
-%     end
-% 
-%     monad++;
-% end
-
+res = fmonad ([9 9 9 1 1 9 9 3 9 4 9 6 8 4],0);
+assert(res==0);
+res = fmonad ([6 2 9 1 1 9 4 1 7 1 6 1 1 1],0);
+assert(res==0);
