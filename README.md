@@ -76,4 +76,4 @@ https://adventofcode.com/2021/day/24
 Day 25
 https://adventofcode.com/2021/day/25
 
-
+![](completion.png)
