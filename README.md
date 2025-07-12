@@ -1,6 +1,8 @@
 Advent of Code 2021 solutions in MATLAB/Octave
 https://adventofcode.com/2021
 
+![](completion_full.png)
+
 Day 1
 https://adventofcode.com/2021/day/1
 
@@ -75,5 +77,3 @@ https://adventofcode.com/2021/day/24
 
 Day 25
 https://adventofcode.com/2021/day/25
-
-![](completion_full.png)
